@@ -74,7 +74,7 @@ export default function HomePage() {
 
   return (
     <div>
-      <section className="relative text-black py-20 md:py-32 overflow-hidden min-h-[600px] md:min-h-[700px]">
+      <section className="relative text-black pt-8 pb-20 md:pt-12 md:pb-32 overflow-hidden min-h-[600px] md:min-h-[700px]">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-gray-100 to-gray-200"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
           <div className="grid lg:grid-cols-2 gap-8 items-stretch h-full">
