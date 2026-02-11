@@ -186,7 +186,7 @@ export default function HomePage() {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
               Real Stories,
             </h2>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-12 whitespace-nowrap">
               Incredible Journeys
             </h2>
           </div>
