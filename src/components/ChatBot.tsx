@@ -81,7 +81,7 @@ export default function ChatBot({ isOpen, onClose, stickyBarVisible }: ChatBotPr
   if (!isOpen) return null;
 
   return (
-    <div className={`fixed ${stickyBarVisible ? 'bottom-14' : 'bottom-4'} right-4 left-4 sm:left-auto z-50 w-auto sm:w-full sm:max-w-sm transform transition-all animate-slideUp`}>
+    <div className={`fixed ${stickyBarVisible ? 'bottom-14' : 'bottom-4'} right-4 z-50 max-w-[calc(100vw-2rem)] sm:max-w-sm w-full sm:w-96 transform transition-all animate-slideUp`}>
       <div className="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
         <div className="bg-gradient-to-r from-[#0066FF] to-[#0052CC] px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
