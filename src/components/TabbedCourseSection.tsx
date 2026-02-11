@@ -1,0 +1,157 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Clock, Calendar, ChevronRight } from 'lucide-react';
+
+interface Course {
+  name: string;
+  duration: string;
+  cohortStart: string;
+  slug: string;
+  category: string;
+}
+
+const courses: Course[] = [
+  {
+    name: 'RRB NTPC',
+    duration: '6 Months',
+    cohortStart: '1st March 2026',
+    slug: 'rrb-ntpc',
+    category: 'RRB'
+  },
+  {
+    name: 'SSC CGL',
+    duration: '6 + 3 Months',
+    cohortStart: '15th March 2026',
+    slug: 'ssc-cgl',
+    category: 'SSC'
+  },
+  {
+    name: 'SSC CHSL',
+    duration: '6 Months',
+    cohortStart: '15th March 2026',
+    slug: 'ssc-chsl',
+    category: 'SSC'
+  },
+  {
+    name: 'Banking Clerical',
+    duration: '6 Months',
+    cohortStart: '10th March 2026',
+    slug: 'banking',
+    category: 'Banking'
+  }
+];
+
+const categories = ['RRB', 'SSC', 'Banking'];
+
+export default function TabbedCourseSection() {
+  const [selectedCategory, setSelectedCategory] = useState('SSC');
+
+  const filteredCourses = courses.filter(
+    (course) => course.category === selectedCategory
+  );
+
+  return (
+    <section className="py-16 md:py-20 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Our Government Exam Programs
+          </h2>
+          <p className="text-lg text-gray-600">
+            Comprehensive coaching programs designed for success
+          </p>
+        </div>
+
+        <div className="flex flex-col lg:flex-row gap-8">
+          <div className="lg:w-80 flex-shrink-0">
+            <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+              <div className="bg-blue-600 text-white px-6 py-4">
+                <h3 className="text-lg font-bold">Most Popular</h3>
+              </div>
+              <div className="p-2">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`w-full text-left px-6 py-4 rounded-xl transition-all font-medium text-lg ${
+                      selectedCategory === category
+                        ? 'bg-blue-600 text-white shadow-md'
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="flex-1">
+            <div className="grid md:grid-cols-2 gap-6">
+              {filteredCourses.map((course) => (
+                <div
+                  key={course.slug}
+                  className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1"
+                >
+                  <div className="h-48 bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center relative overflow-hidden">
+                    <div className="absolute inset-0 bg-black/10"></div>
+                    <div className="relative text-center px-6">
+                      <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-2xl font-bold text-blue-600">
+                          {course.category.charAt(0)}
+                        </span>
+                      </div>
+                      <h3 className="text-2xl font-bold text-white">
+                        {course.name}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div className="p-6">
+                    <div className="space-y-4 mb-6">
+                      <div className="flex items-center text-gray-700">
+                        <Clock className="w-5 h-5 mr-3 text-blue-600 flex-shrink-0" />
+                        <span className="text-sm font-medium">
+                          Duration: {course.duration}
+                        </span>
+                      </div>
+                      <div className="flex items-center text-gray-700">
+                        <Calendar className="w-5 h-5 mr-3 text-blue-600 flex-shrink-0" />
+                        <span className="text-sm font-medium">
+                          Cohort Starts: {course.cohortStart}
+                        </span>
+                      </div>
+                    </div>
+
+                    <Link
+                      to={`/courses/${course.slug}`}
+                      className="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold transition-all shadow-md hover:shadow-lg"
+                    >
+                      View Program
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {filteredCourses.length === 0 && (
+              <div className="text-center py-12 text-gray-500">
+                <p className="text-lg">No courses available in this category yet.</p>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="text-center mt-10">
+          <Link
+            to="/courses"
+            className="inline-flex items-center space-x-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors"
+          >
+            <span>View All Courses</span>
+            <ChevronRight className="w-5 h-5" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}

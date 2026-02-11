@@ -1,14 +1,12 @@
 import { Link } from 'react-router-dom';
 import {
   Users,
-  BookOpen,
   ClipboardCheck,
   UserCheck,
   MapPin,
   Target,
   TrendingUp,
   Award,
-  Clock,
   ChevronRight,
   Download,
   Calendar,
@@ -16,37 +14,11 @@ import {
 } from 'lucide-react';
 import LeadForm from '../components/LeadForm';
 import ShaderBackground from '../components/ui/shader-background';
+import TabbedCourseSection from '../components/TabbedCourseSection';
 import { useState } from 'react';
 
 export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  const courses = [
-    {
-      name: 'RRB NTPC',
-      duration: '6 Months',
-      mode: 'Classroom + Online Support',
-      slug: 'rrb-ntpc'
-    },
-    {
-      name: 'SSC CGL',
-      duration: '6 + 3 Months',
-      mode: 'Classroom Only',
-      slug: 'ssc-cgl'
-    },
-    {
-      name: 'Banking Clerical',
-      duration: '6 Months',
-      mode: 'Classroom Only',
-      slug: 'banking'
-    },
-    {
-      name: 'SSC CHSL',
-      duration: '6 Months',
-      mode: 'Classroom Only',
-      slug: 'ssc-chsl'
-    }
-  ];
 
   const whyChooseUs = [
     { icon: Award, text: 'Industry Professionals as Faculty' },
@@ -193,65 +165,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-16 md:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Government Exam Programs
-            </h2>
-            <p className="text-lg text-gray-600">
-              Comprehensive coaching programs designed for success
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {courses.map((course, index) => (
-              <div
-                key={course.slug}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 group"
-              >
-                <div className="h-48 bg-gradient-to-br from-primary to-secondary flex items-center justify-center relative overflow-hidden">
-                  <BookOpen className="w-20 h-20 text-white/90 group-hover:scale-110 transition-transform" />
-                  {index === 0 && (
-                    <div className="absolute top-4 right-4 bg-accent text-white px-3 py-1 rounded-full text-xs font-semibold">
-                      Popular
-                    </div>
-                  )}
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{course.name}</h3>
-                  <div className="space-y-3 mb-6">
-                    <div className="flex items-center text-gray-600">
-                      <Clock className="w-5 h-5 mr-3 text-primary" />
-                      <span className="text-sm font-medium">{course.duration}</span>
-                    </div>
-                    <div className="flex items-center text-gray-600">
-                      <MapPin className="w-5 h-5 mr-3 text-primary" />
-                      <span className="text-sm font-medium">{course.mode}</span>
-                    </div>
-                  </div>
-                  <Link
-                    to={`/courses/${course.slug}`}
-                    className="block w-full text-center bg-primary text-white py-3 rounded-xl font-semibold transition-all shadow-md hover:shadow-lg"
-                  >
-                    View Details
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-10">
-            <Link
-              to="/courses"
-              className="inline-flex items-center space-x-2 text-primary font-semibold"
-            >
-              <span>View All Courses</span>
-              <ChevronRight className="w-5 h-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <TabbedCourseSection />
 
       <section className="py-20 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
