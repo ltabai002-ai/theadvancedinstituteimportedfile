@@ -150,11 +150,11 @@ export default function HeroSlider() {
       </div>
 
       {/* Mobile Layout - Simplilearn Design Pattern with 3D Carousel */}
-      <div className="lg:hidden min-h-[100vh]">
+      <div className="lg:hidden min-h-[100vh] -mt-16">
         {/* Mobile: 3D Carousel Section with White Background */}
         <div 
           key={`mobile-carousel-${slide.id}`}
-          className="relative w-full h-[55vh] min-h-[400px] max-h-[500px] overflow-hidden flex items-center justify-center bg-white"
+          className="relative w-full h-[55vh] min-h-[400px] max-h-[500px] overflow-hidden flex items-center justify-center bg-white pt-16"
         >
           {/* 3D Carousel Wrapper */}
           <div className="relative w-full h-full flex items-center justify-center [perspective:1000px] px-4">
@@ -216,7 +216,7 @@ export default function HeroSlider() {
         </div>
 
         {/* Mobile: Content Section - Clean White Background */}
-        <div className="bg-white px-5 py-8 pb-20">
+        <div className="bg-white px-5 py-4 pb-20">
           <div 
             key={`mobile-content-${slide.id}`}
             className="space-y-0"
