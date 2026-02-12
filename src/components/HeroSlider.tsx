@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { cn } from '@/lib/utils';
 
 interface Slide {
   id: number;
@@ -8,6 +9,7 @@ interface Slide {
   headline: string;
   subtext: string;
   personImage: string;
+  carouselImages?: string[]; // Optional carousel images for mobile
   ctaText: string;
   ctaLink: string;
 }
@@ -19,6 +21,13 @@ const slides: Slide[] = [
     headline: "Crack Government Exams with Confidence",
     subtext: "Join India's leading government exam institute with 15+ years of proven success in RRB NTPC, SSC CGL, SSC CHSL, and Banking exams.",
     personImage: "/2bcff076-87b2-405a-b4d1-a4287e6f29c7.png",
+    carouselImages: [
+      "/faculty-1.jpg",
+      "/2bcff076-87b2-405a-b4d1-a4287e6f29c7.png",
+      "/faculty-2.jpg",
+      "/woman-success-story.jpg",
+      "/faculty-3.jpg",
+    ],
     ctaText: "Explore Programs",
     ctaLink: "/courses"
   },
@@ -28,6 +37,13 @@ const slides: Slide[] = [
     headline: "SSC & Railway Exam Preparation That Works",
     subtext: "Structured classroom programs with small batch sizes, comprehensive study material, and personalized mentoring from experienced faculty.",
     personImage: "/woman-success-story.jpg",
+    carouselImages: [
+      "/student-girl-success.jpg",
+      "/woman-success-story.jpg",
+      "/faculty-1.jpg",
+      "/faculty-2.jpg",
+      "/faculty-3.jpg",
+    ],
     ctaText: "View All Courses",
     ctaLink: "/courses"
   },
@@ -37,6 +53,13 @@ const slides: Slide[] = [
     headline: "Your Dream Government Job Starts Here",
     subtext: "Small batches of max 20 students for personal attention, full-length mock exams matching actual exam patterns, and expert guidance every step of the way.",
     personImage: "/student-girl-success.jpg",
+    carouselImages: [
+      "/2bcff076-87b2-405a-b4d1-a4287e6f29c7.png",
+      "/student-girl-success.jpg",
+      "/woman-success-story.jpg",
+      "/faculty-1.jpg",
+      "/faculty-2.jpg",
+    ],
     ctaText: "Book Free Demo",
     ctaLink: "/contact"
   }
@@ -46,6 +69,7 @@ export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
+  const [carouselIndex, setCarouselIndex] = useState(1); // Start at middle image
 
   useEffect(() => {
     if (!isAutoPlaying || isPaused) return;
@@ -56,6 +80,14 @@ export default function HeroSlider() {
 
     return () => clearInterval(interval);
   }, [isAutoPlaying, isPaused]);
+
+  // Auto-rotate carousel images
+  useEffect(() => {
+    const carouselTimer = setInterval(() => {
+      handleNextCarousel();
+    }, 4000);
+    return () => clearInterval(carouselTimer);
+  }, []);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -80,7 +112,18 @@ export default function HeroSlider() {
     setIsPaused(false);
   };
 
+  const handleNextCarousel = useCallback(() => {
+    const images = slides[currentSlide].carouselImages || [slides[currentSlide].personImage];
+    setCarouselIndex((prev) => (prev + 1) % images.length);
+  }, [currentSlide]);
+
+  const handlePrevCarousel = () => {
+    const images = slides[currentSlide].carouselImages || [slides[currentSlide].personImage];
+    setCarouselIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   const slide = slides[currentSlide];
+  const carouselImages = slide.carouselImages || [slide.personImage];
 
   return (
     <section 
@@ -106,25 +149,73 @@ export default function HeroSlider() {
         ></div>
       </div>
 
-      {/* Mobile Layout - Simplilearn Design Pattern */}
+      {/* Mobile Layout - Simplilearn Design Pattern with 3D Carousel */}
       <div className="lg:hidden min-h-[100vh]">
-        {/* Mobile: Person Image Section with Gradient Background */}
+        {/* Mobile: 3D Carousel Section with Gradient Background */}
         <div 
-          key={`mobile-img-${slide.id}`}
-          className="relative w-full h-[55vh] min-h-[400px] max-h-[500px] overflow-hidden"
+          key={`mobile-carousel-${slide.id}`}
+          className="relative w-full h-[55vh] min-h-[400px] max-h-[500px] overflow-hidden flex items-center justify-center"
           style={{
             background: 'linear-gradient(135deg, rgba(220, 235, 245, 1) 0%, rgba(240, 245, 250, 1) 50%, rgba(255, 255, 255, 1) 100%)'
           }}
         >
-          {/* Person Image with Fade-In Animation */}
-          <img
-            src={slide.personImage}
-            alt={slide.headline}
-            className="w-full h-full object-cover object-center animate-fadeIn"
-            style={{
-              animation: 'fadeInScale 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards'
-            }}
-          />
+          {/* 3D Carousel Wrapper */}
+          <div className="relative w-full h-full flex items-center justify-center [perspective:1000px] px-4">
+            {carouselImages.map((image, index) => {
+              const offset = index - carouselIndex;
+              const total = carouselImages.length;
+              let pos = (offset + total) % total;
+              if (pos > Math.floor(total / 2)) {
+                pos = pos - total;
+              }
+
+              const isCenter = pos === 0;
+              const isAdjacent = Math.abs(pos) === 1;
+
+              return (
+                <div
+                  key={`${slide.id}-${index}`}
+                  className={cn(
+                    'absolute w-40 h-72 sm:w-48 sm:h-80 transition-all duration-500 ease-in-out',
+                    'flex items-center justify-center'
+                  )}
+                  style={{
+                    transform: `
+                      translateX(${(pos) * 50}%) 
+                      scale(${isCenter ? 1 : isAdjacent ? 0.85 : 0.7})
+                      rotateY(${(pos) * -10}deg)
+                    `,
+                    zIndex: isCenter ? 10 : isAdjacent ? 5 : 1,
+                    opacity: isCenter ? 1 : isAdjacent ? 0.4 : 0,
+                    filter: isCenter ? 'blur(0px)' : 'blur(3px)',
+                    visibility: Math.abs(pos) > 1 ? 'hidden' : 'visible',
+                  }}
+                >
+                  <img
+                    src={image}
+                    alt={`${slide.headline} - Image ${index + 1}`}
+                    className="object-cover w-full h-full rounded-2xl border-2 border-white/20 shadow-2xl"
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Carousel Navigation Buttons */}
+          <button
+            onClick={handlePrevCarousel}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-white/70 hover:bg-white p-2 rounded-full shadow-lg transition-all"
+            aria-label="Previous image"
+          >
+            <ChevronLeft className="w-5 h-5 text-gray-900" />
+          </button>
+          <button
+            onClick={handleNextCarousel}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-white/70 hover:bg-white p-2 rounded-full shadow-lg transition-all"
+            aria-label="Next image"
+          >
+            <ChevronRight className="w-5 h-5 text-gray-900" />
+          </button>
         </div>
 
         {/* Mobile: Content Section - Clean White Background */}
