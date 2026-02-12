@@ -154,23 +154,6 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {[
-              { icon: '👥', title: 'Small Batch Sizes', desc: 'Maximum 20 students per batch for personalized attention' },
-              { icon: '🎓', title: 'Experienced Faculty', desc: '15+ years of expertise in government exam coaching' },
-              { icon: '📚', title: 'Comprehensive Study Material', desc: 'Print + Digital resources with regular updates' },
-              { icon: '✅', title: 'Regular Mock Tests', desc: 'Weekly tests and All India ranking system' },
-              { icon: '💬', title: 'Daily Doubt Clearing', desc: 'Dedicated doubt sessions and personal mentoring' },
-              { icon: '📍', title: 'Prime Location', desc: 'Conveniently located in the heart of Guwahati' }
-            ].map((item, index) => (
-              <div key={index} className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 border border-gray-100">
-                <div className="text-4xl mb-4">{item.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-
           <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
             <div className="grid lg:grid-cols-2 gap-0">
               <div className="relative bg-gradient-to-br from-gray-100 to-gray-200 aspect-video lg:aspect-auto flex items-center justify-center group cursor-pointer">
