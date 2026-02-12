@@ -38,7 +38,8 @@ const courses: Course[] = [
     cohortStart: '15th March 2026',
     slug: 'ssc-chsl',
     category: 'SSC',
-    logo: '/ssc-logo.png'
+    logo: '/ssc-logo.png',
+    backgroundImage: '/ssc-chsl-background.jpg'
   },
   {
     name: 'Banking Clerical',
