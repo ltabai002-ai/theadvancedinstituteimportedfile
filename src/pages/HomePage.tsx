@@ -19,7 +19,6 @@ import ShaderBackground from '../components/ui/shader-background';
 import TabbedCourseSection from '../components/TabbedCourseSection';
 import HeroSlider from '../components/HeroSlider';
 import InfrastructureSection from '../components/InfrastructureSection';
-import DemoClassSection from '../components/DemoClassSection';
 import { useState } from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
@@ -335,8 +334,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      <DemoClassSection />
 
       <section className="py-10 md:py-12 bg-gradient-to-br from-cyan-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
