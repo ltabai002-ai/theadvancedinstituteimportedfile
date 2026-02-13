@@ -371,42 +371,42 @@ export default function CourseDetailPage() {
               {course.examPattern && (
                 <div>
                   <h2 className="text-3xl font-bold text-gray-900 mb-6">Exam Pattern</h2>
-                  <p className="text-gray-700 mb-6">
+                  <p className="text-gray-700 mb-6 text-sm md:text-base">
                     The RRB NTPC 2025-26 exam will be conducted in two stages: Stage 1 (Preliminary) and Stage 2 (Main).
                     The RRB NTPC Stage 1 and Stage 2 have the same syllabus, but the exam pattern is different.
                   </p>
-                  <div className="space-y-8">
+                  <div className="space-y-6 md:space-y-8">
                     {course.examPattern.map((pattern, index) => (
                       <div key={index} className="bg-white border-2 border-gray-200 rounded-lg overflow-hidden">
-                        <div className="bg-primary text-white px-6 py-3">
-                          <h3 className="text-xl font-bold">
+                        <div className="bg-primary text-white px-3 py-2 md:px-6 md:py-3">
+                          <h3 className="text-sm md:text-xl font-bold">
                             RRB NTPC Exam Pattern 2025-26 {pattern.stage}
                           </h3>
                         </div>
                         <div className="overflow-x-auto">
-                          <table className="w-full">
+                          <table className="w-full text-xs md:text-base">
                             <thead>
                               <tr className="bg-orange-400 text-black">
-                                <th className="px-6 py-3 text-left font-bold border-r border-orange-500">Sections</th>
-                                <th className="px-6 py-3 text-left font-bold border-r border-orange-500">No. of Questions</th>
-                                <th className="px-6 py-3 text-left font-bold border-r border-orange-500">Total Marks</th>
-                                <th className="px-6 py-3 text-left font-bold">Duration</th>
+                                <th className="px-2 py-2 md:px-6 md:py-3 text-left font-bold border-r border-orange-500">Sections</th>
+                                <th className="px-2 py-2 md:px-6 md:py-3 text-left font-bold border-r border-orange-500">No. of Questions</th>
+                                <th className="px-2 py-2 md:px-6 md:py-3 text-left font-bold border-r border-orange-500">Total Marks</th>
+                                <th className="px-2 py-2 md:px-6 md:py-3 text-left font-bold">Duration</th>
                               </tr>
                             </thead>
                             <tbody>
                               {pattern.sections.map((section, sectionIndex) => (
                                 <tr key={sectionIndex} className="border-b border-gray-200">
-                                  <td className="px-6 py-4 border-r border-gray-200">{section.name}</td>
-                                  <td className="px-6 py-4 border-r border-gray-200">{section.questions}</td>
-                                  <td className="px-6 py-4 border-r border-gray-200">{section.marks}</td>
-                                  <td className="px-6 py-4">{sectionIndex === 0 ? pattern.duration : ''}</td>
+                                  <td className="px-2 py-2 md:px-6 md:py-4 border-r border-gray-200">{section.name}</td>
+                                  <td className="px-2 py-2 md:px-6 md:py-4 border-r border-gray-200 text-center">{section.questions}</td>
+                                  <td className="px-2 py-2 md:px-6 md:py-4 border-r border-gray-200 text-center">{section.marks}</td>
+                                  <td className="px-2 py-2 md:px-6 md:py-4 text-center">{sectionIndex === 0 ? pattern.duration : ''}</td>
                                 </tr>
                               ))}
                               <tr className="bg-gray-50 font-bold">
-                                <td className="px-6 py-4 border-r border-gray-200">Total</td>
-                                <td className="px-6 py-4 border-r border-gray-200">{pattern.total.questions}</td>
-                                <td className="px-6 py-4 border-r border-gray-200">{pattern.total.marks}</td>
-                                <td className="px-6 py-4"></td>
+                                <td className="px-2 py-2 md:px-6 md:py-4 border-r border-gray-200">Total</td>
+                                <td className="px-2 py-2 md:px-6 md:py-4 border-r border-gray-200 text-center">{pattern.total.questions}</td>
+                                <td className="px-2 py-2 md:px-6 md:py-4 border-r border-gray-200 text-center">{pattern.total.marks}</td>
+                                <td className="px-2 py-2 md:px-6 md:py-4"></td>
                               </tr>
                             </tbody>
                           </table>
