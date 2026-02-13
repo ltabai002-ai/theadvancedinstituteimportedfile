@@ -399,7 +399,14 @@ export default function CourseDetailPage() {
                                   <td className="px-2 py-2 md:px-6 md:py-4 border-r border-gray-200">{section.name}</td>
                                   <td className="px-2 py-2 md:px-6 md:py-4 border-r border-gray-200 text-center">{section.questions}</td>
                                   <td className="px-2 py-2 md:px-6 md:py-4 border-r border-gray-200 text-center">{section.marks}</td>
-                                  <td className="px-2 py-2 md:px-6 md:py-4 text-center">{sectionIndex === 0 ? pattern.duration : ''}</td>
+                                  {sectionIndex === 0 && (
+                                    <td
+                                      className="px-2 py-2 md:px-6 md:py-4 text-center align-middle"
+                                      rowSpan={pattern.sections.length}
+                                    >
+                                      {pattern.duration}
+                                    </td>
+                                  )}
                                 </tr>
                               ))}
                               <tr className="bg-gray-50 font-bold">
