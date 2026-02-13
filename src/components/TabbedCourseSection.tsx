@@ -129,39 +129,37 @@ export default function TabbedCourseSection() {
               ))}
             </div>
             
-            {/* Mobile: Horizontal Scroll */}
-            <div className="lg:hidden overflow-x-auto scrollbar-hide mb-6">
-              <div className="flex gap-3 pb-2">
+            {/* Mobile: Vertical List */}
+            <div className="lg:hidden bg-white rounded-2xl shadow-lg overflow-hidden p-2 mb-6">
+              <button
+                onClick={() => {
+                  setSelectedCategory('Most Popular');
+                  setCurrentSlide(0);
+                }}
+                className={`w-full text-left px-6 py-4 rounded-xl transition-all font-satoshi font-normal text-base leading-[26px] ${
+                  selectedCategory === 'Most Popular'
+                    ? 'bg-blue-600 text-white shadow-md'
+                    : 'text-gray-700 hover:bg-[#004BB8] hover:text-white'
+                }`}
+              >
+                Most Popular
+              </button>
+              {categories.map((category) => (
                 <button
+                  key={category}
                   onClick={() => {
-                    setSelectedCategory('Most Popular');
+                    setSelectedCategory(category);
                     setCurrentSlide(0);
                   }}
-                  className={`flex-shrink-0 px-6 py-3 rounded-xl transition-all font-satoshi font-normal text-sm whitespace-nowrap ${
-                    selectedCategory === 'Most Popular'
+                  className={`w-full text-left px-6 py-4 rounded-xl transition-all font-satoshi font-normal text-base leading-[26px] ${
+                    selectedCategory === category
                       ? 'bg-blue-600 text-white shadow-md'
-                      : 'bg-white text-gray-700 hover:bg-[#004BB8] hover:text-white'
+                      : 'text-gray-700 hover:bg-[#004BB8] hover:text-white'
                   }`}
                 >
-                  Most Popular
+                  {category}
                 </button>
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => {
-                      setSelectedCategory(category);
-                      setCurrentSlide(0);
-                    }}
-                    className={`flex-shrink-0 px-6 py-3 rounded-xl transition-all font-satoshi font-normal text-sm whitespace-nowrap ${
-                      selectedCategory === category
-                        ? 'bg-blue-600 text-white shadow-md'
-                        : 'bg-white text-gray-700 hover:bg-[#004BB8] hover:text-white'
-                    }`}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
 
