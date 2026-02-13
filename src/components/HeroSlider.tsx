@@ -245,7 +245,7 @@ export default function HeroSlider() {
                 style={{
                   color: '#4A5568',
                   letterSpacing: '-0.01em',
-                  animation: !isTransitioning ? 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards' : 'none'
+                  animation: !isTransitioning ? 'fadeIn 0.7s ease-in-out forwards' : 'none'
                 }}
               >
                 {slide.eyebrowText}
@@ -259,7 +259,7 @@ export default function HeroSlider() {
                 color: '#1A202C',
                 letterSpacing: '-0.02em',
                 WebkitFontSmoothing: 'antialiased',
-                animation: !isTransitioning ? 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards' : 'none'
+                animation: !isTransitioning ? 'fadeIn 0.7s ease-in-out 0.1s forwards' : 'none'
               }}
             >
               {slide.headline}
@@ -270,7 +270,7 @@ export default function HeroSlider() {
               className="text-[13px] font-normal leading-[1.5] mb-10"
               style={{
                 color: '#718096',
-                animation: !isTransitioning ? 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards' : 'none'
+                animation: !isTransitioning ? 'fadeIn 0.7s ease-in-out 0.2s forwards' : 'none'
               }}
             >
               {slide.subtext}
@@ -285,7 +285,7 @@ export default function HeroSlider() {
                 letterSpacing: '0.01em',
                 lineHeight: '44px',
                 boxShadow: '0 2px 8px rgba(13, 110, 253, 0.25)',
-                animation: !isTransitioning ? 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards' : 'none'
+                animation: !isTransitioning ? 'fadeIn 0.7s ease-in-out 0.3s forwards' : 'none'
               }}
             >
               {slide.ctaText}
@@ -311,7 +311,7 @@ export default function HeroSlider() {
                 <p
                   className="text-[22px] font-semibold text-gray-800 leading-[1.4] mb-[14px]"
                   style={{
-                    animation: !isTransitioning ? 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards' : 'none'
+                    animation: !isTransitioning ? 'fadeIn 0.7s ease-in-out forwards' : 'none'
                   }}
                 >
                   {slide.eyebrowText}
@@ -322,7 +322,7 @@ export default function HeroSlider() {
               <h1
                 className="text-[56px] font-extrabold text-slate-900 leading-[1.15] mb-[40px] max-w-[600px]"
                 style={{
-                  animation: !isTransitioning ? 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards' : 'none'
+                  animation: !isTransitioning ? 'fadeIn 0.7s ease-in-out 0.1s forwards' : 'none'
                 }}
               >
                 {slide.headline}
@@ -332,7 +332,7 @@ export default function HeroSlider() {
               <p
                 className="text-[20px] font-normal text-gray-600 leading-[1.6] mb-[56px]"
                 style={{
-                  animation: !isTransitioning ? 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards' : 'none'
+                  animation: !isTransitioning ? 'fadeIn 0.7s ease-in-out 0.2s forwards' : 'none'
                 }}
               >
                 {slide.subtext}
@@ -343,7 +343,7 @@ export default function HeroSlider() {
                 to={slide.ctaLink}
                 className="inline-block w-auto bg-blue-600 text-white h-[52px] px-[28px] rounded-lg text-[16px] font-semibold hover:bg-blue-700 transition-all duration-300 hover:shadow-lg leading-[52px] text-center"
                 style={{
-                  animation: !isTransitioning ? 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards' : 'none'
+                  animation: !isTransitioning ? 'fadeIn 0.7s ease-in-out 0.3s forwards' : 'none'
                 }}
               >
                 {slide.ctaText}
