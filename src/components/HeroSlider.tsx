@@ -141,7 +141,7 @@ export default function HeroSlider() {
 
   return (
     <section
-      className="relative bg-white overflow-hidden min-h-[100vh] lg:min-h-screen"
+      className="relative bg-white overflow-hidden lg:min-h-screen"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -164,7 +164,7 @@ export default function HeroSlider() {
       </div>
 
       {/* Mobile Layout - Simplilearn Design Pattern with 3D Carousel */}
-      <div className="lg:hidden min-h-[100vh] -mt-16">
+      <div className="lg:hidden -mt-16">
         {/* Mobile: 3D Carousel Section with White Background */}
         <div 
           key={`mobile-carousel-${slide.id}`}
@@ -230,15 +230,13 @@ export default function HeroSlider() {
         </div>
 
         {/* Mobile: Content Section - Clean White Background */}
-        <div className="bg-white px-5 py-6 pb-8">
+        <div className="bg-white px-5 pt-4 pb-4">
           <div
             key={`mobile-content-${slide.id}`}
-            className="space-y-0"
           >
-            {/* Eyebrow Text - Context Label */}
             {slide.eyebrowText && (
               <p
-                className="text-[13px] font-medium leading-[1.4] mb-3"
+                className="text-[13px] font-medium leading-[1.4] mb-2"
                 style={{
                   color: '#4A5568',
                   letterSpacing: '-0.01em'
@@ -248,9 +246,8 @@ export default function HeroSlider() {
               </p>
             )}
 
-            {/* Main Headline - Primary Message */}
             <h1
-              className="text-[24px] font-bold leading-[1.2] mb-4"
+              className="text-[24px] font-bold leading-[1.2] mb-3"
               style={{
                 color: '#1A202C',
                 letterSpacing: '-0.02em',
@@ -260,9 +257,8 @@ export default function HeroSlider() {
               {slide.headline}
             </h1>
 
-            {/* Subtext - Supporting Description */}
             <p
-              className="text-[13px] font-normal leading-[1.5] mb-5"
+              className="text-[13px] font-normal leading-[1.5] mb-4"
               style={{
                 color: '#718096'
               }}
@@ -270,7 +266,6 @@ export default function HeroSlider() {
               {slide.subtext}
             </p>
 
-            {/* CTA Button */}
             <Link
               to={slide.ctaLink}
               className="block w-full text-white h-[44px] rounded-lg text-[14px] font-medium transition-all duration-300 text-center"
@@ -286,6 +281,24 @@ export default function HeroSlider() {
           </div>
         </div>
 
+        {/* Mobile Dots Indicator */}
+        <div className="flex justify-center gap-2 pb-5 bg-white">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`transition-all duration-300 ease-in-out rounded-full cursor-pointer ${
+                index === currentSlide
+                  ? 'w-6 h-2 rounded'
+                  : 'w-2 h-2'
+              }`}
+              style={{
+                backgroundColor: index === currentSlide ? '#0D6EFD' : '#CBD5E0'
+              }}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Desktop Content Container */}
@@ -304,12 +317,12 @@ export default function HeroSlider() {
               )}
 
               {/* Main Heading */}
-              <h1 className="text-[56px] font-extrabold text-slate-900 leading-[1.15] mb-[40px] max-w-[600px]">
+              <h1 className="text-[56px] font-extrabold text-slate-900 leading-[1.15] mb-[24px] max-w-[600px]">
                 {slide.headline}
               </h1>
 
               {/* Subtext */}
-              <p className="text-[20px] font-normal text-gray-600 leading-[1.6] mb-[56px]">
+              <p className="text-[20px] font-normal text-gray-600 leading-[1.6] mb-[32px]">
                 {slide.subtext}
               </p>
 
@@ -342,8 +355,8 @@ export default function HeroSlider() {
         <ChevronRight className="w-6 h-6 text-gray-900" />
       </button>
 
-      {/* Dots Indicator - Simplilearn Style */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+      {/* Dots Indicator - Desktop Only */}
+      <div className="hidden lg:flex absolute bottom-6 left-1/2 -translate-x-1/2 z-20 gap-2">
         {slides.map((_, index) => (
           <button
             key={index}
