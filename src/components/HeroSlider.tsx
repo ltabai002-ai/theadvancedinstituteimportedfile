@@ -234,8 +234,8 @@ export default function HeroSlider() {
             </p>
 
             {/* Main Headline - Primary Message */}
-            <h1 
-              className="text-[24px] font-bold leading-[1.2] mb-16 opacity-0"
+            <h1
+              className="text-[24px] font-bold leading-[1.2] mb-8 opacity-0"
               style={{
                 color: '#1A202C',
                 letterSpacing: '-0.02em',
@@ -247,8 +247,8 @@ export default function HeroSlider() {
             </h1>
 
             {/* Subtext - Supporting Description */}
-            <p 
-              className="text-[13px] font-normal leading-[1.5] mb-20 opacity-0"
+            <p
+              className="text-[13px] font-normal leading-[1.5] mb-10 opacity-0"
               style={{
                 color: '#718096',
                 animation: 'fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards'
@@ -307,12 +307,12 @@ export default function HeroSlider() {
               </p>
 
               {/* Main Heading */}
-              <h1 className="text-[56px] font-extrabold text-slate-900 leading-[1.15] mb-[18px] max-w-[600px]">
+              <h1 className="text-[56px] font-extrabold text-slate-900 leading-[1.15] mb-[40px] max-w-[600px]">
                 {slide.headline}
               </h1>
 
               {/* Subtext */}
-              <p className="text-[20px] font-normal text-gray-600 leading-[1.6] mb-[28px]">
+              <p className="text-[20px] font-normal text-gray-600 leading-[1.6] mb-[56px]">
                 {slide.subtext}
               </p>
 
