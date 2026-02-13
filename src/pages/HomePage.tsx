@@ -198,10 +198,6 @@ export default function HomePage() {
                 <blockquote className="text-xl md:text-2xl font-semibold text-gray-900 mb-6 leading-relaxed">
                   "Welcome to The Advanced Learning Academy - where we transform your government job dreams into reality through expert guidance and proven strategies."
                 </blockquote>
-
-                <p className="text-gray-700 leading-relaxed">
-                  After graduation, I was struggling to crack government exams on my own. The personalized mentoring and doubt-clearing sessions here made all the difference. The faculty's experience in exam patterns and time management techniques were invaluable. Within 8 months of joining, I cleared RRB NTPC with an All India Rank of 247 and secured my dream job with Indian Railways.
-                </p>
               </div>
             </div>
           </div>
