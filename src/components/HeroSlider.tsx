@@ -86,13 +86,10 @@ export default function HeroSlider() {
     return () => clearInterval(interval);
   }, [isAutoPlaying, isPaused]);
 
-  // Auto-rotate carousel images
+  // Sync carousel with slide changes
   useEffect(() => {
-    const carouselTimer = setInterval(() => {
-      handleNextCarousel();
-    }, 4000);
-    return () => clearInterval(carouselTimer);
-  }, []);
+    setCarouselIndex(1);
+  }, [currentSlide]);
 
   const nextSlide = () => {
     setIsTransitioning(true);
