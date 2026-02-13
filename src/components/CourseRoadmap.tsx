@@ -71,8 +71,7 @@ export default function CourseRoadmap({ curriculum, duration }: CourseRoadmapPro
                           <PhaseIcon className={`w-5 h-5 ${colors.icon}`} />
                         </div>
                         <div>
-                          <h3 className="text-lg font-bold text-gray-900">Month {month.month}</h3>
-                          <p className={`text-sm font-semibold ${colors.icon}`}>{month.phase}</p>
+                          <p className={`text-lg font-semibold ${colors.icon}`}>{month.phase}</p>
                         </div>
                       </div>
 
@@ -122,8 +121,7 @@ export default function CourseRoadmap({ curriculum, duration }: CourseRoadmapPro
                           <PhaseIcon className={`w-5 h-5 ${colors.icon}`} />
                         </div>
                         <div>
-                          <h3 className="text-lg font-bold text-gray-900">Month {month.month}</h3>
-                          <p className={`text-sm font-semibold ${colors.icon}`}>{month.phase}</p>
+                          <p className={`text-lg font-semibold ${colors.icon}`}>{month.phase}</p>
                         </div>
                       </div>
 
