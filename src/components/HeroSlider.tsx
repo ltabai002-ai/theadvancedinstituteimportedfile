@@ -70,12 +70,17 @@ export default function HeroSlider() {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [isPaused, setIsPaused] = useState(false);
   const [carouselIndex, setCarouselIndex] = useState(1); // Start at middle image
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     if (!isAutoPlaying || isPaused) return;
-    
+
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+        setIsTransitioning(false);
+      }, 300);
     }, 5000);
 
     return () => clearInterval(interval);
@@ -90,18 +95,30 @@ export default function HeroSlider() {
   }, []);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % slides.length);
-    setIsAutoPlaying(false);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+      setIsTransitioning(false);
+      setIsAutoPlaying(false);
+    }, 300);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-    setIsAutoPlaying(false);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+      setIsTransitioning(false);
+      setIsAutoPlaying(false);
+    }, 300);
   };
 
   const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-    setIsAutoPlaying(false);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentSlide(index);
+      setIsTransitioning(false);
+      setIsAutoPlaying(false);
+    }, 300);
   };
 
   const handleMouseEnter = () => {
@@ -219,7 +236,11 @@ export default function HeroSlider() {
         <div className="bg-white px-5 py-4 pb-24">
           <div
             key={`mobile-content-${slide.id}`}
-            className="space-y-0"
+            className="space-y-0 transition-all duration-300"
+            style={{
+              opacity: isTransitioning ? 0 : 1,
+              transform: isTransitioning ? 'translateX(-20px)' : 'translateX(0)'
+            }}
           >
             {/* Eyebrow Text - Context Label */}
             {slide.eyebrowText && (
@@ -228,7 +249,7 @@ export default function HeroSlider() {
                 style={{
                   color: '#4A5568',
                   letterSpacing: '-0.01em',
-                  animation: 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards'
+                  animation: !isTransitioning ? 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards' : 'none'
                 }}
               >
                 {slide.eyebrowText}
@@ -242,7 +263,7 @@ export default function HeroSlider() {
                 color: '#1A202C',
                 letterSpacing: '-0.02em',
                 WebkitFontSmoothing: 'antialiased',
-                animation: 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards'
+                animation: !isTransitioning ? 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards' : 'none'
               }}
             >
               {slide.headline}
@@ -253,7 +274,7 @@ export default function HeroSlider() {
               className="text-[13px] font-normal leading-[1.5] mb-10"
               style={{
                 color: '#718096',
-                animation: 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards'
+                animation: !isTransitioning ? 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards' : 'none'
               }}
             >
               {slide.subtext}
@@ -268,7 +289,7 @@ export default function HeroSlider() {
                 letterSpacing: '0.01em',
                 lineHeight: '44px',
                 boxShadow: '0 2px 8px rgba(13, 110, 253, 0.25)',
-                animation: 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards'
+                animation: !isTransitioning ? 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards' : 'none'
               }}
             >
               {slide.ctaText}
@@ -284,14 +305,18 @@ export default function HeroSlider() {
           <div className="w-full max-w-[600px]">
             <div
               key={`desktop-content-${slide.id}`}
-              className="space-y-0"
+              className="space-y-0 transition-all duration-300"
+              style={{
+                opacity: isTransitioning ? 0 : 1,
+                transform: isTransitioning ? 'translateX(-30px)' : 'translateX(0)'
+              }}
             >
               {/* Eyebrow Text */}
               {slide.eyebrowText && (
                 <p
                   className="text-[22px] font-semibold text-gray-800 leading-[1.4] mb-[14px]"
                   style={{
-                    animation: 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards'
+                    animation: !isTransitioning ? 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards' : 'none'
                   }}
                 >
                   {slide.eyebrowText}
@@ -302,7 +327,7 @@ export default function HeroSlider() {
               <h1
                 className="text-[56px] font-extrabold text-slate-900 leading-[1.15] mb-[40px] max-w-[600px]"
                 style={{
-                  animation: 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards'
+                  animation: !isTransitioning ? 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards' : 'none'
                 }}
               >
                 {slide.headline}
@@ -312,7 +337,7 @@ export default function HeroSlider() {
               <p
                 className="text-[20px] font-normal text-gray-600 leading-[1.6] mb-[56px]"
                 style={{
-                  animation: 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards'
+                  animation: !isTransitioning ? 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards' : 'none'
                 }}
               >
                 {slide.subtext}
@@ -323,7 +348,7 @@ export default function HeroSlider() {
                 to={slide.ctaLink}
                 className="inline-block w-auto bg-blue-600 text-white h-[52px] px-[28px] rounded-lg text-[16px] font-semibold hover:bg-blue-700 transition-all duration-300 hover:shadow-lg leading-[52px] text-center"
                 style={{
-                  animation: 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards'
+                  animation: !isTransitioning ? 'slideIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards' : 'none'
                 }}
               >
                 {slide.ctaText}
