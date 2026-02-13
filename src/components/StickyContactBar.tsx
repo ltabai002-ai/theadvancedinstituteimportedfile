@@ -1,11 +1,9 @@
 import { Phone, MessageCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import CallbackModal from './CallbackModal';
-import ChatBot from './ChatBot';
 
 export default function StickyContactBar() {
   const [showCallbackModal, setShowCallbackModal] = useState(false);
-  const [showChatBot, setShowChatBot] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -60,15 +58,17 @@ export default function StickyContactBar() {
               <span className="font-semibold text-xs sm:text-sm">1800-212-7688</span>
             </a>
 
-            <button
-              onClick={() => setShowChatBot(true)}
+            <a
+              href="https://wa.me/916002346625"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center gap-1 bg-[#0066FF] text-white px-2 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium hover:bg-[#0052CC] transition-all"
             >
               <div className="bg-white rounded-full p-1">
                 <MessageCircle className="w-3 h-3 text-[#0066FF]" />
               </div>
               <span>Live Chat</span>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -76,12 +76,6 @@ export default function StickyContactBar() {
       <CallbackModal
         isOpen={showCallbackModal}
         onClose={() => setShowCallbackModal(false)}
-      />
-
-      <ChatBot
-        isOpen={showChatBot}
-        onClose={() => setShowChatBot(false)}
-        stickyBarVisible={isVisible}
       />
     </>
   );
